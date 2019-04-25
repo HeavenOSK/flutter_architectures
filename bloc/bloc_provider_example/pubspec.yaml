@@ -8,8 +8,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^0.1.2
+
+  rxdart:
+  bloc_provider:
 
 dev_dependencies:
   flutter_test:
