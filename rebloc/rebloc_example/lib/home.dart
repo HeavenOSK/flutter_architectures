@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rebloc/rebloc.dart';
+import 'package:rebloc_example/rebloc/actions.dart';
+import 'package:rebloc_example/rebloc/app_state.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -31,17 +34,26 @@ class _HomeState extends State<Home> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+            ViewModelSubscriber<AppState, int>(
+              converter: (state) => state.counter,
+              builder: (context, dispatcher, viewModel) {
+                return Text(
+                  '$viewModel',
+                  style: Theme.of(context).textTheme.display1,
+                );
+              },
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-        onPressed: _incrementCounter,
+      floatingActionButton: DispatchSubscriber<AppState>(
+        builder: (context, dispatcher) {
+          return FloatingActionButton(
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+            onPressed: () => dispatcher(IncrementAction()),
+          );
+        },
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
