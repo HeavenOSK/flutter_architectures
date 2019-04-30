@@ -11,7 +11,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
       store: Store<AppState>(
-        initialState: AppState.initialState(),
+        initialState: const AppState.initialState(),
         blocs: [
           CounterBloc(),
         ],
