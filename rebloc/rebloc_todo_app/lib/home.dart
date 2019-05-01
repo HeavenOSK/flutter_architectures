@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rebloc/rebloc.dart';
-import 'package:rebloc_example/rebloc/actions.dart';
-import 'package:rebloc_example/rebloc/app_state.dart';
+import 'package:rebloc_todo_app/rebloc/actions.dart';
+import 'package:rebloc_todo_app/rebloc/app_state.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
