@@ -26,11 +26,11 @@ class _HomeState extends State<Home> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            ViewModelSubscriber<AppState, int>(
-              converter: (state) => state.counter,
+            ViewModelSubscriber<AppState, _CounterViewModel>(
+              converter: (state) => _CounterViewModel.create(state),
               builder: (context, dispatcher, viewModel) {
                 return Text(
-                  '$viewModel',
+                  '${viewModel.counter}',
                   style: Theme.of(context).textTheme.display1,
                 );
               },
@@ -49,4 +49,14 @@ class _HomeState extends State<Home> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+class _CounterViewModel {
+  _CounterViewModel(this.counter);
+
+  factory _CounterViewModel.create(AppState state) {
+    return _CounterViewModel(state.counter);
+  }
+
+  final int counter;
 }
