@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rebloc/rebloc.dart';
 import 'package:rebloc_example/home.dart';
 import 'package:rebloc_example/rebloc/app_state.dart';
-import 'package:rebloc_example/rebloc/bloc/counter_bloc.dart';
+import 'package:rebloc_example/rebloc/counter/counter_bloc.dart';
 
 const _kTitle = 'Rebloc Example';
 

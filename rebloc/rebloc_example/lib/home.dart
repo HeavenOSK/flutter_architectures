@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rebloc/rebloc.dart';
-import 'package:rebloc_example/rebloc/actions.dart';
 import 'package:rebloc_example/rebloc/app_state.dart';
+import 'package:rebloc_example/rebloc/counter/counter_actions.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -40,10 +40,23 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: DispatchSubscriber<AppState>(
         builder: (context, dispatcher) {
-          return FloatingActionButton(
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-            onPressed: () => dispatcher(IncrementAction()),
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              FloatingActionButton(
+                tooltip: 'Increment',
+                child: const Text('＋', style: TextStyle(fontSize: 20)),
+                onPressed: () => dispatcher(IncrementAction()),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 4),
+              ),
+              FloatingActionButton(
+                tooltip: 'Decrement',
+                child: const Text('−', style: TextStyle(fontSize: 20)),
+                onPressed: () => dispatcher(DecrementAction()),
+              ),
+            ],
           );
         },
       ), // This trailing comma makes auto-formatting nicer for build methods.

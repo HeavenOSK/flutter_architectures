@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rebloc/rebloc.dart';
 import 'package:rebloc_todo_app/rebloc/actions.dart';
 import 'package:rebloc_todo_app/rebloc/app_state.dart';
-import 'package:rebloc_todo_app/todo_list.dart';
+import 'package:rebloc_todo_app/todo_list_item.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          TodoList(),
+          TodoListItem(),
           const Text(
             'You have pushed the button this many times:',
           ),
