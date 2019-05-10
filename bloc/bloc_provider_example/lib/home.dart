@@ -1,6 +1,8 @@
 import 'package:bloc_provider_example/bloc/counter_bloc_provider.dart';
 import 'package:flutter/material.dart';
 
+import 'bloc/counter_bloc.dart';
+
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
 
@@ -26,8 +28,8 @@ class _HomeState extends State<Home> {
               'You have pushed the button this many times:',
             ),
             StreamBuilder<int>(
-              stream: bloc.counter,
-              initialData: bloc.counter.value,
+              stream: bloc.count,
+              initialData: bloc.count.value,
               builder: (context, snapshot) {
                 final count = snapshot.data;
                 return Text(
@@ -39,10 +41,23 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-        onPressed: () => bloc.incrementController.add(null),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          FloatingActionButton(
+            tooltip: 'Increment',
+            child: const Text('＋', style: TextStyle(fontSize: 20)),
+            onPressed: () => bloc.counterController.add(CounterIncrement()),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 4),
+          ),
+          FloatingActionButton(
+            tooltip: 'Decrement',
+            child: const Text('−', style: TextStyle(fontSize: 20)),
+            onPressed: () => bloc.counterController.add(CounterDecrement()),
+          ),
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

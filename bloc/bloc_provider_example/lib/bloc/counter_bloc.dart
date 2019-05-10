@@ -3,27 +3,47 @@ import 'dart:async';
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
+abstract class CounterControl {}
+
+class CounterIncrement extends CounterControl {}
+
+class CounterDecrement extends CounterControl {}
+
 class CounterBloc implements Bloc {
   CounterBloc() {
-    //todo: Replace implementation with pipe()
-    _incrementController.stream.listen(_handleIncrement);
+    _counterController.stream.listen(_handleControl);
   }
 
-  final _incrementController = StreamController<void>();
-  final _counter = BehaviorSubject<int>.seeded(0);
+  final _counterController = StreamController<CounterControl>();
+  final _count = BehaviorSubject<int>.seeded(0);
 
-  Sink<void> get incrementController => _incrementController.sink;
-  ValueObservable<int> get counter => _counter;
+  Sink<void> get counterController => _counterController.sink;
 
-  void _handleIncrement(_) {
-    final currentCount = _counter.value;
-    final newCount = currentCount + 1;
-    _counter.add(newCount);
+  ValueObservable<int> get count => _count;
+
+  void _handleControl(CounterControl control) {
+    if (control is CounterIncrement) {
+      _handleIncrement();
+    } else if (control is CounterDecrement) {
+      _handleDecrement();
+    }
+  }
+
+  void _handleIncrement() {
+    final oldCount = _count.value;
+    final newCount = oldCount + 1;
+    _count.add(newCount);
+  }
+
+  void _handleDecrement() {
+    final oldCount = _count.value;
+    final newCount = oldCount - 1;
+    _count.add(newCount);
   }
 
   @override
   void dispose() {
-    _incrementController.close();
-    _counter.close();
+    _counterController.close();
+    _count.close();
   }
 }
