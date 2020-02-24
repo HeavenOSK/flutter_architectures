@@ -1,0 +1,27 @@
+name: freezed_counter
+description: A new Flutter application.
+version: 1.0.0+1
+environment:
+  sdk: ">=2.6.0-dev <3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^0.1.2
+  provider: any
+  subscription_holder: any
+  mono_kit: any
+  dot_of: any
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: any
+  freezed: any
+  json_serializable: any
+  pedantic_mono:
+  intl_translation: any
+dependency_overrides:
+    provider: 4.1.0-dev
+flutter:
+  uses-material-design: true
